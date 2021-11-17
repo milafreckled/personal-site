@@ -1,0 +1,198 @@
+@mixin printText($num-letters: 3) {
+  //$angle-per-char: $angle-span / $num-letters;
+  @for $i from 1 through $num-letters {
+    &:nth-child(n) {
+      animation: 3s appear;
+      animation-delay: $i+'s';
+    }
+  }
+}
+body, * {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    margin: 0;
+  }
+  h6, h2, h4{
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  a{
+    text-decoration: none;
+    color: "#fff";
+    background-color: transparent;
+  }
+  a:visited, a:hover, a:active{
+    color: "#fff";
+    background-color: transparent;
+  }
+  .glow-icon{
+    border-radius: 50%;
+  }
+  .glow-icon::before{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 60%; 
+height: 60%;
+border-radius: 50%;
+background: white;
+transition: .5s;
+transform: scale(.9);
+z-index: -1;
+  }
+  .glow-icon:hover::before{
+    transform: scale(1.1);
+    box-shadow: 0 0 15px white;
+  }
+  .glow-icon:hover{
+    box-shadow: 0 0 5px white;
+    text-shadow: 0 0 5px white;
+  }
+  .MuiPaper-root, .MuiPaper-elevation, .MuiPaper-rounded{
+    position: "relative";
+    text-align: 'center';
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+    flex-direction: 'column';
+    color: black;
+    width: "30vw";
+    height: "20vw";
+    background-position: "cover";
+    background-size: "30rem";
+   &:hover{
+     background-image: 'ņone';
+   }
+    >.project-title{
+      position: relative;
+      background-color: 'black';
+      text-align: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: '4';
+      text-transform: uppercase;
+    >*{
+      padding: '30%';
+    }
+    }
+  }   
+
+  .project-stack{
+    min-height: "20vw";
+  }
+
+  ul{
+    list-style: none;
+    position: relative;
+    width: 100%;
+  }
+  span{
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    left: -1.5em;
+    top: 0;
+    transition: all .4s;
+    @media only screen and (max-width: 768px){
+      left: -2em;
+    }
+  }
+  li{
+    position: relative;
+    display: block;
+    overflow: visible;
+    width: 100%;
+  }
+  li:hover {
+    transform: translateZ(1.5rem);
+ }
+li:hover #emoji-rocket{
+     animation: ease-in-out fly 1.5s forwards;
+  }
+li:hover #emoji-teamplayer{
+    animation: ease-in-out teamplayer 1.5s forwards;
+ }
+ li:hover #emoji-curious{
+  animation: ease-in-out curious 1.5s forwards;
+}
+  @keyframes fly{
+    50%{
+     transform: translate(50%, -50%);
+    }
+  }
+
+ @keyframes curious{
+   50%{
+    transform: translateX(-2em);
+   }
+   100%{
+    transform: scaleX(1.1);
+   }
+  }
+
+ @keyframes teamplayer{
+   50%{
+    transform: scale(1.2);
+   }
+  }
+  .justHi{
+    @include printText;
+    color: #4B3869;
+  }
+
+  @keyframes appear{
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+
+  .MuiSvgIcon-root {
+    fill: #fff;
+  }
+ 
+  h4.rotated-text{
+   transform-origin: bottom center;
+    font: 26px, 'Inconsolata';
+  }
+
+
+  @keyframes slideInFromTop {
+    0% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeUp{
+  0%{
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  }
+  @keyframes appear{
+    from{
+      opacity: 0; 
+  }
+  to{
+    opacity: 100%;
+  }
+}
+  @keyframes blink{
+    from{
+      box-shadow: 0px 0px 10px #4B3869;  
+  }
+  to{
+    box-shadow: 0px 0px 20px rgba(134, 52, 172, 0.6);
+  }
+}
