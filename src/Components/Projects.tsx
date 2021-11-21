@@ -50,8 +50,10 @@ const ProjectDesc = styled('article')(({ theme }) => ({
   '& h2':{
     letterSpacing: '1.2',
     marginBottom: '1rem',
+    color: theme.palette.primary.main,
   },
   '& p':{
+    color: theme.palette.text.primary,
     marginTop: '2rem', 
     lineHeight: '2',
     fontSize: '16px',
@@ -68,7 +70,7 @@ const ProjectDesc = styled('article')(({ theme }) => ({
 }));
 export default function Projects(){
   return(
-      <div style={{ backgroundColor: myTheme.palette.primary.main,  paddingBlock: '40px'}}>
+      <div style={{ backgroundColor: '#fff', paddingBlock: '40px'}}>
     <Typography sx={{ typography:  'h2', textAlign: "center", color:'#fff' }} >My Projects</Typography>
         <ProjectsContainer >  
           <ProjectImage src={weatherApiImg} alt="" />
