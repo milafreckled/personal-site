@@ -1,22 +1,28 @@
 import * as React from 'react';
-import { getByTestId, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import App from './App';
-import renderer, { ReactTestRenderer, ReactTestRendererJSON } from 'react-test-renderer';
-import ProjectItem from './Components/ProjectItem';
-import weatherAPI from './images/weather-api.jpeg'
-import shallow from 'react-test-renderer/shallow'; 
+import Portrait from './Components/Portrait';
 
-test('renders project item component', () => {
 
-  const component = renderer.create(
-    <ProjectItem url="https://thawing-beach-25991.herokuapp.com/" bgImage={`url(${weatherAPI})`} text="Weather API"></ProjectItem>
-  ); 
-  const result = component.getRenderOutput();
-  let tree = component.toJSON();
-  let Href = tree.props.url;
-  console.log(component.getInstance());
-  expect(tree).toMatchSnapshot();
-  const wrapper = shallow(component);
-  expect(result.type).toBe(`div`)
+describe('Portrait', () => {
+  beforeEach(() => {
+    render(<Portrait />);
+  });
+  test('renders portrait component', () => {    
+    screen.debug();
+    expect(screen.getByText(/a programmer/)).toBeInTheDocument();
+  });
+  test('alt text test', () => {
+    expect(screen.getByAltText('me')).toBeInTheDocument();
+  });
+  test('role test', () => {
+    render(<App />);
+    expect(screen.getByRole('banner')).toBeInTheDocument();
+  });
+  it('shows that there is no such text in app', () => {
+    expect(screen.queryByText(/JavaScript tests/)).toBeNull();
+  })
 });
+
 

@@ -1,14 +1,13 @@
 import React from 'react';
 import Navigation from './Components/Navigation';
-import Container from '@mui/material/Container'
-import { Portrait } from './Components/Portrait'
+import Portrait  from './Components/Portrait'
 import "./App.scss"
 import myTheme from './Theme/MyTheme'
 import { ThemeProvider } from '@mui/material/styles';
 import  Projects  from "./Components/Projects"
 import Timeline from "./Components/Timeline"
 import Footer from "./Components/Footer"
-// https://freckled-site.web.app
+// https://ludas-website.web.app
 function App() {
   return (
  <ThemeProvider theme={myTheme}>

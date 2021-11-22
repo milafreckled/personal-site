@@ -15,12 +15,12 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import myTheme from '../Theme/MyTheme'
 import Link from '@mui/material/Link'
 
-
-import logo from "../images/freckled.svg"
+import {ReactComponent as Logo} from "../images/freckled.svg"
 
 const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
+  width: '100%',
   position: 'absolute',
   left: "76%",
   top: '20%',
@@ -30,6 +30,7 @@ const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
   justifyContent: 'flex-end',
   color: '#fff',
   zIndex: theme.zIndex.drawer,
+  paddingRight: '2.5vw',
   [theme.breakpoints.down("sm")]:{ 
     left: '0%',
     top: '0%',
@@ -37,15 +38,15 @@ const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
     alignItems: 'center',
     margin: 'none',
     justifyContent: 'center',
-     height: '100vh',
-     width: '100vw',
-     flexDirection: 'column',
-     '& .MuiSvgIcon-root': {
+    height: '100vh',
+    width: '100vw',
+    flexDirection: 'column',
+    '& .MuiSvgIcon-root': {
       fill: '#fff',
     },
   },
   '& a':{
-    padding: '1.2em',
+    padding: '1.2em 1.8em',
   },
   '& svg:hover': {
     fill: '#fff',
@@ -59,24 +60,8 @@ const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
   }
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme=myTheme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
 
-const LogoImage = styled('img')(({ theme=myTheme }) => ({
+const LogoImage = styled(Logo)(({ theme=myTheme }) => ({
   display: 'inline',
   outline: 'none', 
   border: 'none',
@@ -103,10 +88,11 @@ const [openMenu, setOpenMenu] = React.useState(false)
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={() => setOpenMenu(!openMenu)}
           >
-            <MenuIcon sx={{ display: { lg: 'none', sm: 'block' }, zIndex: myTheme.zIndex.tooltip }} onClick={() => setOpenMenu(!openMenu)}/>      
+            <MenuIcon sx={{ display: { lg: 'none', sm: 'block' }, zIndex: myTheme.zIndex.tooltip }} />      
           </IconButton>
-          <LogoImage alt="logo" src={logo} />
+          <LogoImage />
             <SocialIconWrapper sx={{ display: { sm: 'none', xs: 'none', lg: 'block' } }}>
               <Link  underline="none" href="https://www.linkedin.com/in/liudmyla-malomuzh-4a8b36175/" ><LinkedInIcon className="glow-icon" /></Link>
              <Link underline="none" href="https://github.com/milafreckled"><GitHubIcon className="glow-icon" /></Link>

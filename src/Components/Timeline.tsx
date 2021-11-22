@@ -30,14 +30,13 @@ const MyTable = styled(Table)(({theme}) => ({
     width: 'calc(100% - 5vw)',
     marginInline: '2.5vw',
     overflowX: 'hidden',
-    '& .MuiTableHead-root': {
+    '& .MuiTableCell-head': {
         fontWeight: "bold",
         textAlign: "center",
         textTransform: "uppercase",
         border: 'none',
         variant: 'h2',
-        borderBottom: `2px dashed ${alpha(theme.palette.primary.main, 0.6)}`,
-        
+        borderBottom: `2px dashed ${alpha(theme.palette.primary.main, 0.6)}`,   
     },
     '& .MuiTableRow-root': {
       border: 'none',
@@ -50,11 +49,16 @@ const MyTable = styled(Table)(({theme}) => ({
     '& .MuiTableCell-root': {
         paddingLeft: "7%",
         paddingRight: "7%",
-        
+        '&:nth-child(2n+1)': {
+          fontWeight: '800',
+        }
     },
     [theme.breakpoints.down('sm')]:{
       margin: '0',
       width: '100vw',
+      '& th:nth-child(2n+1)':{
+        borderBottom: `2px solid ${alpha(theme.palette.primary.main, 0.6)}`, 
+      }
     }
 }));
 

@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
-import ProjectItem from "./ProjectItem"
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
-import myTheme from '../Theme/MyTheme'
+import { isMobile } from 'react-device-detect';
+import myTheme from "../Theme/MyTheme"
 import "../App.scss"
 import weatherApiImg from "../images/weather-api.jpeg"
 import calculatorImg from "../images/profit-calculator.jpeg"
@@ -19,7 +17,6 @@ const ProjectsContainer = styled('div')(({ theme}) => ({
     ...theme.typography.body2,
     display: 'flex',
     justifyContent: 'space-between',
-    color: '#fff',
     marginTop: '1.5vw',
     [theme.breakpoints.down('sm')]:{
       display: 'block',
@@ -27,6 +24,8 @@ const ProjectsContainer = styled('div')(({ theme}) => ({
     },
     '& a':{
       color: 'white',
+      flex: '50%',
+      margin: "2.5vw",
     }
   }));
 
@@ -34,6 +33,7 @@ const ProjectImage = styled('img')(({ theme }) => ({
   marginInline: "2.5vw",
   flex: '50%',
   borderRadius: '20px',
+  maxWidth: '85%',
   '&:hover':{
     boxShadow: '0 0 5px white',
     transform: 'translateZ(1.2)',
@@ -69,13 +69,14 @@ const ProjectDesc = styled('article')(({ theme }) => ({
   },
 }));
 export default function Projects(){
-  return(
+    if (!isMobile){ 
+      return(
       <div style={{ backgroundColor: '#fff', paddingBlock: '40px'}}>
-    <Typography sx={{ typography:  'h2', textAlign: "center", color:'#fff' }} >My Projects</Typography>
+    <Typography sx={{ typography:  'h2', textAlign: "center", color: myTheme.palette.primary.main }} >My Projects</Typography>
         <ProjectsContainer >  
-          <ProjectImage src={weatherApiImg} alt="" />
+        <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={weatherApiImg} alt="" /></a>
           <ProjectDesc>
-          <h2><a href="https://thawing-beach-25991.herokuapp.com/" >WEATHER API</a></h2>
+          <h2>WEATHER API</h2>
           <Divider />
           <p>
          Weather API using current weather data from https://openweathermap.org/api.<br />
@@ -84,25 +85,24 @@ export default function Projects(){
           </p>
           </ProjectDesc>
         </ProjectsContainer>
-        <ProjectsContainer>
-        <ProjectImage src={calculatorImg} alt="" />
+        <ProjectsContainer>     
           <ProjectDesc>
-
-          <h2><a href="https://tranquil-castle-21899.herokuapp.com/">PROFIT CALCULATOR</a></h2>  
+          <h2>PROFIT CALCULATOR</h2>  
           <Divider />
           <p>
             Profit calculator for cryptocurrency.<br />
             Technologies used: Materialize CSS framework, SCSS, JavaScript, HTML.<br />
             Hosted with heroku.
           </p>
+         
           </ProjectDesc>
-        
+          <a href="https://tranquil-castle-21899.herokuapp.com/"> <ProjectImage src={calculatorImg} alt="" /></a>
           </ProjectsContainer>
           <ProjectsContainer>
-          <ProjectImage src={hackerImg} alt="" />
+          <a href="https://hackers-stories.web.app/"> <ProjectImage src={hackerImg} alt="" /></a>
           <ProjectDesc>
       
-            <h2><a href="https://hackers-stories.web.app/">HACKER STORIES APP</a></h2>  
+            <h2>HACKER STORIES APP</h2>  
             <Divider />
           <p>
     
@@ -112,14 +112,59 @@ export default function Projects(){
           </p>
           </ProjectDesc>
           </ProjectsContainer>
-       {/* <ProjectItem url="https://thawing-beach-25991.herokuapp.com/"  text="Weather API"></ProjectItem>
+          </div>
+          )
+    }else{
+return(
+<div style={{ backgroundColor: '#fff', paddingBlock: '40px'}}>
+    <Typography sx={{ typography:  'h2', textAlign: "center", color:'#fff' }} >My Projects</Typography>
+        <ProjectsContainer >  
+        <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={weatherApiImg} alt="" /></a>
+          <ProjectDesc>
+          <h2>WEATHER API</h2>
+          <Divider />
+          <p>
+         Weather API using current weather data from https://openweathermap.org/api.<br />
+            Search for a current temperature in any place, and add records to the weather archive.<br />
+            Technologies included: Express, EJS, MongoDB. Hosted with heroku.
+          </p>
+          </ProjectDesc>
+        </ProjectsContainer>
+        <ProjectsContainer> 
+        <a href="https://dreamy-volhard-522fd9.netlify.app/"> <ProjectImage src={calculatorImg} alt="" /></a>    
+          <ProjectDesc>
+          <h2>PROFIT CALCULATOR</h2>  
+          <Divider />
+          <p>
+            Profit calculator for cryptocurrency.<br />
+            Technologies used: Materialize CSS framework, SCSS, JavaScript, HTML.<br />
+            Hosted with heroku.
+          </p>
+         
+          </ProjectDesc>
+          </ProjectsContainer>
+          <ProjectsContainer>
+          <a href="https://hackers-stories.web.app/"> <ProjectImage src={hackerImg} alt="" /></a>
+          <ProjectDesc>
+      
+            <h2>HACKER STORIES APP</h2>  
+            <Divider />
+          <p>
+    
+            App where you can search for any term in web programming world.<br />
+            Technologies used: React, Redux, Typescript.<br />
+            Hosted with firebase.
+          </p>
+          </ProjectDesc>
+          </ProjectsContainer>
+          </div>
+)
+    }
+       /* <ProjectItem url="https://thawing-beach-25991.herokuapp.com/"  text="Weather API"></ProjectItem>
        <ProjectItem url="https://dreamy-volhard-522fd9.netlify.app/ " text="Profit Calculator"></ProjectItem>
        <ProjectItem url="https://tranquil-castle-21899.herokuapp.com/"  text="Sign Up Page"></ProjectItem>
  
        <ProjectItem url="https://thawing-beach-25991.herokuapp.com/"  text="Weather API"></ProjectItem>
        <ProjectItem url="https://dreamy-volhard-522fd9.netlify.app/ " text="Profit Calculator"></ProjectItem>
-       <ProjectItem url="https://tranquil-castle-21899.herokuapp.com/"  text="Sign Up Page"></ProjectItem> */}
-   </div>
-   )
-    
+       <ProjectItem url="https://tranquil-castle-21899.herokuapp.com/"  text="Sign Up Page"></ProjectItem> */
 }

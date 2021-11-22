@@ -37,9 +37,23 @@ export default function Footer(){
             fontSize: '24px',
             background: '#ffffff',
             zIndex: myTheme.zIndex.tooltip,
+            border: 'none',
           }
-        }
-        
+        },
+          subBtn: {
+            display: 'block', 
+            color: myTheme.palette.primary.main,
+            background: '#fff',
+            marginLeft: `calc(50% - 132px)`,
+            marginBottom: myTheme.spacing(2),
+            border: `2px solid ${myTheme.palette.primary.main}`,
+            cursor: 'pointer',
+            '&:hover':{
+              color: '#fff',
+            background: myTheme.palette.primary.main,
+            border: `2px solid #fff`,
+            }
+          }    
     });
     const classes = useStyles();
     const [firstName, setFirstName] = useState('');
@@ -73,7 +87,9 @@ return(
         </Switch>
         </Router>
         <div style={{ background: myTheme.palette.primary.main, paddingBlock: '2rem', textAlign: 'center' }}>
-        <Popup modal nested trigger={ <Button style={{ display: 'block', color: '#fff', marginLeft: `calc(50% - 132px)`, cursor: 'pointer'}}>Subscribe to a newsletter</Button>} position="center center">
+        <Popup modal nested trigger={ <Button className={classes.subBtn}>
+            Subscribe to a newsletter
+            </Button>} position="center center">
             {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
       <div className={classes.modal}>
         <button className="close" onClick={close}>
@@ -96,7 +112,7 @@ return(
     </Form.Text>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="I agree to receive weekly newsletter from freckled blog" />
+    <Form.Check type="checkbox" label='<p>I agree to receive weekly newsletter from <em>freckled blog</em></p>' />
   </Form.Group>
   <Btn variant="primary" type="submit" onClick={(e) => onSubmit} style={{backgroundColor: myTheme.palette.primary.main}} >
     Subscribe

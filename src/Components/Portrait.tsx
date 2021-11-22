@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled, alpha, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import DownloadIcon from '@mui/icons-material/Download';
 import EmailIcon from '@mui/icons-material/Email';
@@ -21,9 +21,12 @@ const HintContainer = styled('div')(({ theme = myTheme }) => ({
   left: '48%',
   top: '19%',
   overflow: 'hidden',
+  "& a:nth-of-type(2n)": {
+    marginLeft: "40px",
+  }
 }));
 
-const Hint = styled('div')(({ theme=myTheme }) => ({
+const Hint = styled('button')(({ theme=myTheme }) => ({
   position: 'relative',
   backgroundColor: '#664E87',
   color: '#fff',
@@ -32,6 +35,8 @@ const Hint = styled('div')(({ theme=myTheme }) => ({
   height: '60px',
   textAlign: 'center',
   font: '2rem, bold',
+  border: 'none',
+  outline: 'none',
   [theme.breakpoints.down('md')]:{ 
     display: 'none',
     '& >*':{
@@ -43,28 +48,11 @@ const Hint = styled('div')(({ theme=myTheme }) => ({
     top: '25%',
     left: '30%',
   },
-  '&:hover  span':{
-    visibility: 'visible',
+  '&:hover':{
+    border: `2px outset ${alpha(myTheme.palette.primary.main, 0.6)}`,
   },
-  '&:hover ':{
-  backgroundColor: '#fff',
-   width: '100px',
-  }
 }));
-const HintText = styled('span')(({ theme }) => ({
-  transition: 'visibility 1s ease-in',
-  visibility: 'hidden',
-  width: '100px',
-  fontSize: '12px',
-  backgroundColor: alpha(myTheme.palette.primary.main, 0.6),
-  color: '#fff',
-  textAlign: 'center',
-  top: '0%',
-  left: '0%',
-  borderRadius: '6px',
-  position: 'absolute',
-  zIndex: theme.zIndex.tooltip,
-}));
+
 const ImageBox = styled('div')(({ theme=myTheme }) => ({
   padding: theme.spacing(2),
   zIndex: myTheme.zIndex.tooltip,
@@ -146,7 +134,7 @@ const Image = styled('img')(({ theme=myTheme }) => ({
     }
   }))
 
-export const Portrait = () => {
+const Portrait = () => {
     return(
       <MyContainer>
         <ImageBox >
@@ -168,15 +156,17 @@ export const Portrait = () => {
       </Typography>
       <HintContainer>
       <Tooltip sx={{maxHeight: '12px'}} title="Download CV">
-      <a href="../images/CV.pdf" download> <Hint  sx={{zIndex: myTheme.zIndex.mobileStepper}}>
+      <a href="https://docs.google.com/document/d/e/2PACX-1vSGQQxD1LFJJEnAVE5ppSy2-4LjgpvQU0KptgPANJwQAmfcxoYhAmQKAZf8g7-mv-QXFRQfOFGDFmpS/pub" download> <Hint  sx={{zIndex: myTheme.zIndex.mobileStepper}}>
       <DownloadIcon /></Hint></a></Tooltip>
-      <Tooltip title="Email me"><a href="mailto:miladul@gmail.com"><Hint>
+      <Tooltip title="Email me"><a href="mailto:miladul2014@gmail.com"><Hint>
       <EmailIcon />
       </Hint></a></Tooltip>
-<Hint><Tooltip title="Visit Blog"><BookIcon /></Tooltip></Hint>
+      <Tooltip title="Visit Blog"><Hint><BookIcon /></Hint></Tooltip>
 </HintContainer>
 </TextBox>
 </ImageBox>
 </MyContainer>
     )
 }
+export default Portrait;
+// https://docs.google.com/document/d/e/2PACX-1vSGQQxD1LFJJEnAVE5ppSy2-4LjgpvQU0KptgPANJwQAmfcxoYhAmQKAZf8g7-mv-QXFRQfOFGDFmpS/pub
