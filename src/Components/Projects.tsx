@@ -96,7 +96,7 @@ export default function Projects(){
           </p>
          
           </ProjectDesc>
-          <a href="https://tranquil-castle-21899.herokuapp.com/"> <ProjectImage src={calculatorImg} alt="" /></a>
+          <a href="https://dreamy-volhard-522fd9.netlify.app/"> <ProjectImage src={calculatorImg} alt="" /></a>
           </ProjectsContainer>
           <ProjectsContainer>
           <a href="https://hackers-stories.web.app/"> <ProjectImage src={hackerImg} alt="" /></a>
