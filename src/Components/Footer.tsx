@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Form, Button as Btn} from 'react-bootstrap'
 import { makeStyles } from '@mui/styles'
@@ -61,7 +60,7 @@ export default function Footer(){
     const [email, setEmail] = useState('');
     function onSubmit(e: FormEvent<HTMLFormElement>){
       e.preventDefault();
-      axios.post('http://localhost:8080/subscribe', { email,
+      axios.post('/subscribe', { email,
       firstName,
       lastName
       })
@@ -95,7 +94,7 @@ return(
         <button className="close" onClick={close}>
           &times;
           </button>
-          <Form method="POST" action="http://localhost:8080/subscribe">
+          <Form method="POST" action="http://localhost:5001/ludas-website/us-central1/subscribe">
   <Form.Group className="mb-3" controlId="formBasicEmail">
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>First name</Form.Label>

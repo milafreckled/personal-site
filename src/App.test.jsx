@@ -22,7 +22,10 @@ describe('Portrait', () => {
   });
   it('shows that there is no such text in app', () => {
     expect(screen.queryByText(/JavaScript tests/)).toBeNull();
-  })
+  });
+  test('findBy for emoji id should work', async () => {
+    expect(await screen.findByText(/Ludmila/)).toBeInTheDocument();
+  });
 });
 
 
