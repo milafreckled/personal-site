@@ -9,7 +9,16 @@ mailchimp.setConfig({
   apiKey: process.env.REACT_APP_MAILCHIMP_API_KEY,
   server: "us7",
 });
+// IN CLIENT(example):
+// document.addEventListener('DOMContentLoaded', function() {
 
+//   let app = firebase.app();
+
+
+//   const sendText = firebase.functions().httpsCallable('sendText');
+
+//   sendText({ message: 'Hello World!' })
+// });
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -17,8 +26,8 @@ mailchimp.setConfig({
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-app.post((req, res) => {
-  function subscribe(user) {
+exports.subscribe = functions.https.onRequest((req, res) => {
+  function subscribeMailchimp(user) {
     mailchimp.lists.addListMember(listId, {
       email_address: user.email,
       status: "subscribed",
@@ -39,7 +48,7 @@ app.post((req, res) => {
     lastName: body.lastName,
     email: body.email,
   };
-  subscribe(subscribingUser);
+  subscribeMailchimp(subscribingUser);
   functions.logger.info("New user subscribed!\n");
   res.redirect("/");
 });

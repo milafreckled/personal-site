@@ -4,7 +4,7 @@ import "../App.scss"
 import { makeStyles } from '@mui/styles'
 import myTheme from '../Theme/MyTheme'
 
-const useStyles=makeStyles({
+const useStyles = makeStyles({
   projectItem: {
     margin: '.5vw 2.5vw',
     padding: '.2em',

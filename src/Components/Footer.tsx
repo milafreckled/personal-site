@@ -58,9 +58,10 @@ export default function Footer(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+
     function onSubmit(e: FormEvent<HTMLFormElement>){
       e.preventDefault();
-      axios.post('/subscribe', { email,
+      axios.post('http:///ludas-website/us-central1/subscribe', {email,
       firstName,
       lastName
       })
@@ -75,8 +76,7 @@ return(
     <div className={classes.footer} >
         <Router>
         {/* <Button style={{ color: myTheme.palette.primary.main}} component="a" href="mailto:miladul2014@gmail.com">Email me</Button> */}
-        {/* <Button style={{display: 'block', color: myTheme.palette.primary.main}}><Link style={{display: 'block', color: myTheme.palette.primary.main}} to="/checkout">Buy me a coffee</Link></Button> */}
-         
+        {/* <Button style={{display: 'block', color: myTheme.palette.primary.main}}><Link style={{display: 'block', color: myTheme.palette.primary.main}} to="/checkout">Buy me a coffee</Link></Button> */}   
         <Switch>
           <Route path="/checkout">
             <CheckoutForm />
@@ -88,21 +88,22 @@ return(
         <div style={{ background: myTheme.palette.primary.main, paddingBlock: '2rem', textAlign: 'center' }}>
         <Popup modal nested trigger={ <Button className={classes.subBtn}>
             Subscribe to a newsletter
-            </Button>} position="center center">
+            </Button>
+          } position="center center">
             {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
       <div className={classes.modal}>
         <button className="close" onClick={close}>
           &times;
           </button>
-          <Form method="POST" action="http://localhost:5001/ludas-website/us-central1/subscribe">
+          <Form method="POST" action="http:///ludas-website/us-central1/subscribe">
   <Form.Group className="mb-3" controlId="formBasicEmail">
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>First name</Form.Label>
-    <Form.Control type="text" placeholder="Name" name="firstName" onChange={(e) => setFirstName(e.target.value)} />
+    <Form.Control type="text" placeholder="First Name" name="firstName" onChange={(e) => setFirstName(e.target.value)} />
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Last name</Form.Label>
-    <Form.Control type="text" placeholder="Name" name="lastName" onChange={(e) => setLastName(e.target.value)}/>
+    <Form.Control type="text" placeholder="Last Name" name="lastName" onChange={(e) => setLastName(e.target.value)}/>
   </Form.Group>
     <Form.Label>Email address</Form.Label>
     <Form.Control type="email" placeholder="Enter email" name="email" onChange={(e) => setEmail(e.target.value)} />
@@ -111,7 +112,7 @@ return(
     </Form.Text>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label='<p>I agree to receive weekly newsletter from <em>freckled blog</em></p>' />
+    <Form.Check type="checkbox" label='I agree to receive weekly newsletter from freckled blog' />
   </Form.Group>
   <Btn variant="primary" type="submit" onClick={(e) => onSubmit} style={{backgroundColor: myTheme.palette.primary.main}} >
     Subscribe

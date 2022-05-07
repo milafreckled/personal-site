@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import  Projects  from "./Components/Projects"
 import Timeline from "./Components/Timeline"
 import Footer from "./Components/Footer"
-// https://ludas-website.web.app
+
 function App() {
   return (
  <ThemeProvider theme={myTheme}>

@@ -3,8 +3,9 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import App from './App';
 import Portrait from './Components/Portrait';
-
-
+import userEvent from '@testing-library/user-event';
+ // const onChange = jest.fn() - mock function
+ // jest.mock('axios');
 describe('Portrait', () => {
   beforeEach(() => {
     render(<Portrait />);

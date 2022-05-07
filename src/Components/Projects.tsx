@@ -6,12 +6,12 @@ import { isMobile } from 'react-device-detect';
 import myTheme from "../Theme/MyTheme"
 import "../App.scss"
 import weatherApiImg from "../images/weather-api.jpeg"
-import calculatorImg from "../images/profit-calculator.jpeg"
-import hackerImg from "../images/hacker-stories.png"
+import calculatorImg from "../images/profit-calculator.png"
+import nutritionImg from "../images/nutrition-app.png"
 
 
 //https://bjw6l.csb.app/ = calculator app
-//https://tranquil-castle-21899.herokuapp.com/ - sign in app
+//https://nutrition-app-milafreckled.herokuapp.com/ - nutrition app
 //https://dreamy-volhard-522fd9.netlify.app/ - profit calculator
 const ProjectsContainer = styled('div')(({ theme}) => ({
     ...theme.typography.body2,
@@ -99,16 +99,15 @@ export default function Projects(){
           <a href="https://dreamy-volhard-522fd9.netlify.app/"> <ProjectImage src={calculatorImg} alt="" /></a>
           </ProjectsContainer>
           <ProjectsContainer>
-          <a href="https://hackers-stories.web.app/"> <ProjectImage src={hackerImg} alt="" /></a>
+          <a href="https://hackers-stories.web.app/"> <ProjectImage src={nutritionImg} alt="" /></a>
           <ProjectDesc>
       
-            <h2>HACKER STORIES APP</h2>  
+            <h2>NUTRITION APP</h2>  
             <Divider />
           <p>
-    
-            App where you can search for any term in web programming world.<br />
-            Technologies used: React, Redux, Typescript.<br />
-            Hosted with firebase.
+          App where you can search for receipes, check ingredients, calories and nutritional characteristics simultaneously.<br />
+            Technologies used: React, Typescript, used Edamam Nutrition Analysis API.<br />
+            Hosted with heroku.
           </p>
           </ProjectDesc>
           </ProjectsContainer>
@@ -138,33 +137,27 @@ return(
           <p>
             Profit calculator for cryptocurrency.<br />
             Technologies used: Materialize CSS framework, SCSS, JavaScript, HTML.<br />
-            Hosted with heroku.
+            Hosted with netlify.
           </p>
          
           </ProjectDesc>
           </ProjectsContainer>
           <ProjectsContainer>
-          <a href="https://hackers-stories.web.app/"> <ProjectImage src={hackerImg} alt="" /></a>
+          <a href="https://hackers-stories.web.app/"> <ProjectImage src={nutritionImg} alt="" /></a>
           <ProjectDesc>
       
-            <h2>HACKER STORIES APP</h2>  
+            <h2>NUTRITION APP</h2>  
             <Divider />
           <p>
     
-            App where you can search for any term in web programming world.<br />
-            Technologies used: React, Redux, Typescript.<br />
-            Hosted with firebase.
+            App where you can search for receipes, check ingredients, calories and nutritional characteristics simultaneously.<br />
+            Technologies used: React, Typescript, used Edamam Nutrition Analysis API.<br />
+            Hosted with heroku.
           </p>
           </ProjectDesc>
           </ProjectsContainer>
           </div>
 )
     }
-       /* <ProjectItem url="https://thawing-beach-25991.herokuapp.com/"  text="Weather API"></ProjectItem>
-       <ProjectItem url="https://dreamy-volhard-522fd9.netlify.app/ " text="Profit Calculator"></ProjectItem>
-       <ProjectItem url="https://tranquil-castle-21899.herokuapp.com/"  text="Sign Up Page"></ProjectItem>
- 
-       <ProjectItem url="https://thawing-beach-25991.herokuapp.com/"  text="Weather API"></ProjectItem>
-       <ProjectItem url="https://dreamy-volhard-522fd9.netlify.app/ " text="Profit Calculator"></ProjectItem>
-       <ProjectItem url="https://tranquil-castle-21899.herokuapp.com/"  text="Sign Up Page"></ProjectItem> */
+  
 }
