@@ -1,5 +1,5 @@
 import * as React from "react"
-import Divider from "@mui/material/Divider"
+import { useInView } from 'react-intersection-observer';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import { isMobile } from 'react-device-detect';
@@ -30,6 +30,16 @@ const MyTable = styled(Table)(({theme}) => ({
     width: 'calc(100% - 5vw)',
     marginInline: '2.5vw',
     overflowX: 'hidden',
+    opacity: 0,
+    transform: 'translateY(20vh)',
+    visibility: 'hidden',
+    transition: 'opacity 0.2s ease-out , transform 0.6s ease-out',
+    willChange: 'opacity, visibility',
+    '&.is-visible':{
+      opacity: 1,
+      transform: 'none',
+      visibility: 'visible',
+    },
     '& .MuiTableCell-head': {
         fontWeight: "bold",
         textAlign: "center",
@@ -87,10 +97,16 @@ export default function CustomizedTables() {
   React.useEffect(() => {
     console.log(isMobile);
   }, [])
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+    trackVisibility: true,
+    delay: 100
+  });
   if (isMobile){ 
-  return( <TableContainer sx={{paddingBlock: '40px'}} component={'div'}>
-    <Typography  sx={{ typography: 'h2', py: '.5em', textAlign: "center", color: myTheme.palette.primary.main }}>Timeline</Typography>
-     <MyTable sx={{ }} aria-label="customized table">
+  return( 
+  <TableContainer  sx={{ paddingBlock: '40px'}} component={'div'}>
+    <Typography sx={{ typography: 'h2', py: '.5em', textAlign: "center", color: myTheme.palette.primary.main }}>Timeline</Typography>
+     <MyTable ref={ref} className={inView ? 'is-visible' : ''} sx={{ }} aria-label="customized table">
        <TableBody>
          {rows.map((row) => (
            <>
@@ -104,11 +120,13 @@ export default function CustomizedTables() {
          ))}
        </TableBody>
      </MyTable>
-   </TableContainer> )
+   </TableContainer> 
+   ) 
    }else{
-      return( <TableContainer sx={{paddingBlock: '40px'}} component={'div'}>
+      return( 
+      <TableContainer ref={ref} className={inView ? 'is-visible' : ''} sx={{paddingBlock: '40px'}} component={'div'}>
          <Typography  sx={{ typography: 'h2', py: '.5em', textAlign: "center", color: myTheme.palette.primary.main }}>Timeline</Typography>
-        <MyTable aria-label="customized table">
+        <MyTable ref={ref} className={inView ? 'is-visible' : ''} aria-label="customized table">
           <TableHead>
             <TableRow>
               <TableCell align="left">Date</TableCell>

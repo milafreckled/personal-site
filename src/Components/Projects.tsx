@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
@@ -15,12 +16,24 @@ import nutritionImg from "../images/nutrition-app.png"
 //https://dreamy-volhard-522fd9.netlify.app/ - profit calculator
 const ProjectsContainer = styled('div')(({ theme}) => ({
     ...theme.typography.body2,
+    overflowY: 'hidden',
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: '1.5vw',
+    opacity: 0,
+    transform: 'translateY(20vh)',
+    visibility: 'hidden',
+    transition: 'opacity 0.2s ease-out , transform 0.6s ease-out',
+    willChange: 'opacity, visibility',
     [theme.breakpoints.down('sm')]:{
       display: 'block',
       marginInline: '2.5vw',
+    },
+    '&.is-visible':{
+      opacity: 1,
+      transform: 'none',
+      visibility: 'visible',
+      display: 'flex'
     },
     '& a':{
       color: 'white',
@@ -69,11 +82,17 @@ const ProjectDesc = styled('article')(({ theme }) => ({
   },
 }));
 export default function Projects(){
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+    trackVisibility: true,
+    delay: 100
+  });
+
     if (!isMobile){ 
       return(
-      <div style={{ backgroundColor: '#fff', paddingBlock: '40px'}}>
+      <div style={{ backgroundColor: '#fff', paddingBlock: '40px', overflowY: 'hidden'}}>
     <Typography sx={{ typography:  'h2', textAlign: "center", color: myTheme.palette.primary.main }} >My Projects</Typography>
-        <ProjectsContainer >  
+        <ProjectsContainer ref={ref} className={inView ? 'is-visible' : ''}>  
         <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={weatherApiImg} alt="" /></a>
           <ProjectDesc>
           <h2>WEATHER API</h2>
@@ -85,7 +104,7 @@ export default function Projects(){
           </p>
           </ProjectDesc>
         </ProjectsContainer>
-        <ProjectsContainer>     
+        <ProjectsContainer  className={inView ? 'is-visible' : ''}>     
           <ProjectDesc>
           <h2>PROFIT CALCULATOR</h2>  
           <Divider />
@@ -98,10 +117,9 @@ export default function Projects(){
           </ProjectDesc>
           <a href="https://dreamy-volhard-522fd9.netlify.app/"> <ProjectImage src={calculatorImg} alt="" /></a>
           </ProjectsContainer>
-          <ProjectsContainer>
+          <ProjectsContainer  className={inView ? 'is-visible' : ''}>
           <a href="https://hackers-stories.web.app/"> <ProjectImage src={nutritionImg} alt="" /></a>
           <ProjectDesc>
-      
             <h2>NUTRITION APP</h2>  
             <Divider />
           <p>
@@ -117,7 +135,7 @@ export default function Projects(){
 return(
 <div style={{ backgroundColor: '#fff', paddingBlock: '40px'}}>
     <Typography sx={{ typography:  'h2', textAlign: "center", color:'#fff' }} >My Projects</Typography>
-        <ProjectsContainer >  
+        <ProjectsContainer ref={ref} className={inView ? 'is-visible' : ''}>  
         <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={weatherApiImg} alt="" /></a>
           <ProjectDesc>
           <h2>WEATHER API</h2>

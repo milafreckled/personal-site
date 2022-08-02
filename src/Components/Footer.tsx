@@ -61,7 +61,7 @@ export default function Footer(){
 
     function onSubmit(e: FormEvent<HTMLFormElement>){
       e.preventDefault();
-      axios.post('http:///ludas-website/us-central1/subscribe', {email,
+      axios.post('https://us-central1-ludas-website.cloudfunctions.net/subscribe', {email,
       firstName,
       lastName
       })
@@ -95,7 +95,7 @@ return(
         <button className="close" onClick={close}>
           &times;
           </button>
-          <Form method="POST" action="http:///ludas-website/us-central1/subscribe">
+          <Form method="POST" action="https://us-central1-ludas-website.cloudfunctions.net/subscribe">
   <Form.Group className="mb-3" controlId="formBasicEmail">
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>First name</Form.Label>
@@ -118,7 +118,7 @@ return(
     Subscribe
   </Btn>
 </Form>
- 
+
     </div>
             )}
           </Popup>  
