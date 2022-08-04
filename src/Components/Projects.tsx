@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+
 import { useInView } from 'react-intersection-observer';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography'
@@ -82,7 +82,7 @@ const ProjectDesc = styled('article')(({ theme }) => ({
   },
 }));
 export default function Projects(){
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0,
     trackVisibility: true,
     delay: 100

@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import { Form, Button as Btn} from 'react-bootstrap'
 import { makeStyles } from '@mui/styles'
 import CheckoutForm from "../Checkout/CheckoutForm"
-import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import myTheme from "../Theme/MyTheme";
 import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup';

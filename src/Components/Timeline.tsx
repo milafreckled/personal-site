@@ -97,7 +97,7 @@ export default function CustomizedTables() {
   React.useEffect(() => {
     console.log(isMobile);
   }, [])
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0,
     trackVisibility: true,
     delay: 100

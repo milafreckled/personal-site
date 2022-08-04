@@ -1,4 +1,4 @@
-import { ThemeOptions, createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 
 declare module '@mui/material/styles' {
 interface Theme {
