@@ -20,9 +20,11 @@
     "body-parser": "^1.19.0",
     "concurrently": "^6.4.0",
     "cors": "^2.8.5",
+    "debug": "^4.3.1",
     "express": "^4.17.1",
     "firebase": "^9.9.0",
     "firebase-cli": "^1.2.0",
+    "firebase-tools": "^11.6.0",
     "gatsby-image": "^3.11.0",
     "gatsby-remark-images": "^6.0.0",
     "gatsby-transformer-remark": "^5.0.0",
@@ -40,6 +42,7 @@
     "stripe": "^8.177.0",
     "styled-components": "^5.3.1",
     "typescript": "^4.7.4",
+    "uuid": "^7.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
