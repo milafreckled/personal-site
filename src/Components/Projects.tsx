@@ -14,7 +14,7 @@ import nutritionImg from "../images/nutrition-app.png"
 //https://bjw6l.csb.app/ = calculator app
 //https://nutrition-app-milafreckled.herokuapp.com/ - nutrition app
 //https://dreamy-volhard-522fd9.netlify.app/ - profit calculator
-const ProjectsContainer = styled('div')(({ theme}) => ({
+const ProjectsContainer = styled('div')(({ theme=myTheme }) => ({
     ...theme.typography.body2,
     overflowY: 'hidden',
     display: 'flex',
@@ -42,7 +42,7 @@ const ProjectsContainer = styled('div')(({ theme}) => ({
     }
   }));
 
-const ProjectImage = styled('img')(({ theme }) => ({
+const ProjectImage = styled('img')(({ theme=myTheme }) => ({
   marginInline: "2.5vw",
   flex: '50%',
   borderRadius: '20px',
@@ -81,6 +81,7 @@ const ProjectDesc = styled('article')(({ theme }) => ({
     },
   },
 }));
+
 export default function Projects(){
   const { ref, inView } = useInView({
     threshold: 0,

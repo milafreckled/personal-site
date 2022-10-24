@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 
 export default class CheckoutForm extends React.Component {
   onToken = (token) => {
-    fetch('/create-checkout-session', {
+    fetch('https://us-central1-ludas-website.cloudfunctions.net/create-checkout-session', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {

@@ -17,7 +17,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.75",
     "express": "^4.17.1",
     "firebase-admin": "^11.0.1",
-    "firebase-functions": "^3.14.1",
+    "firebase-functions": "^3.23.0",
     "mailchimp": "^1.2.1"
   },
   "devDependencies": {

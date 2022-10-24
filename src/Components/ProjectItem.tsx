@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
 import "../App.scss"
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles'
 import myTheme from '../Theme/MyTheme'
 
-const useStyles = makeStyles({
-  projectItem: {
+const ProjectLink = styled('a')(({theme = myTheme}) => ({
     margin: '.5vw 2.5vw',
     padding: '.2em',
     position: 'relative',
@@ -28,18 +26,18 @@ const useStyles = makeStyles({
     [myTheme.breakpoints.down('sm')]:{
       margin: '1vw 2.5vw',
     }
-  },
+  }))
+    
 
-})
+
 interface ProjectItemProps {
     text: string, 
     url: string, 
  }
 
 export default function ProjectItem(props: ProjectItemProps){
-    const classes = useStyles()
     return(
-      <a className={classes.projectItem} href={props.url}>{props.text}</a>
+      <ProjectLink href={props.url}>{props.text}</ProjectLink>
 
     )
 }

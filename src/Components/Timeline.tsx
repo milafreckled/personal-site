@@ -21,7 +21,7 @@ function createData(
       createData("September-November 2021", "Google Tech Mentorship for Women in Poland"),
       createData("September 2017-June 2019", "Student in Starokostiantyniv Gymnasium, math&informatics profile"),
   ]
-const MyTable = styled(Table)(({theme}) => ({
+const MyTable = styled(Table)(({theme=myTheme}) => ({
     position: 'relative',
     alignSelf: "center",
     backgroundColor: "#fff",
@@ -72,7 +72,7 @@ const MyTable = styled(Table)(({theme}) => ({
     }
 }));
 
-const Description = styled(TableCell)(({theme})=> ({
+const Description = styled(TableCell)(({theme=myTheme})=> ({
     width: 'auto',
     height: '10vw',
     color: theme.palette.text.secondary,
@@ -94,9 +94,9 @@ const Description = styled(TableCell)(({theme})=> ({
 
 
 export default function CustomizedTables() {
-  React.useEffect(() => {
-    console.log(isMobile);
-  }, [])
+  // React.useEffect(() => {
+  //   console.log(isMobile);
+  // }, []);
   const { ref, inView } = useInView({
     threshold: 0,
     trackVisibility: true,

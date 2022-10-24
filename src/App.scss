@@ -118,6 +118,9 @@ li:hover #emoji-teamplayer{
  li:hover #emoji-curious{
   animation: ease-in-out curious 1.5s forwards;
 }
+li span{
+  cursor: pointer;
+}
   @keyframes fly{
     50%{
      transform: translate(50%, -50%);
@@ -188,7 +191,8 @@ li:hover #emoji-teamplayer{
     opacity: 100%;
   }
 }
-  @keyframes blink{
+  
+@keyframes blink{
     from{
       box-shadow: 0px 0px 10px #4B3869;  
   }

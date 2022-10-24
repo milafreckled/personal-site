@@ -16,12 +16,12 @@ import Link from '@mui/material/Link'
 
 import {ReactComponent as Logo} from "../images/freckled.svg"
 
-const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
-  padding: theme.spacing(0, 2),
+const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({ 
+  padding: theme.spacing(2),
   height: '100%',
   width: '100%',
   position: 'absolute',
-  left: "76%",
+  left: '76%',
   top: '20%',
   pointerEvents: 'all',
   display: 'flex',
@@ -30,7 +30,7 @@ const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
   color: '#fff',
   zIndex: theme.zIndex.drawer,
   paddingRight: '2.5vw',
-  [theme.breakpoints.down("sm")]:{ 
+  [theme.breakpoints.down("sm")]: { 
     left: '0%',
     top: '0%',
     backgroundColor: theme.palette.primary.main,
@@ -44,7 +44,7 @@ const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
       fill: '#fff',
     },
   },
-  '& a':{
+  '& a': {
     padding: '1.2em 1.8em',
   },
   '& svg:hover': {
@@ -54,7 +54,7 @@ const SocialIconWrapper = styled('div')(({ theme=myTheme }) => ({
   '& .MuiSvgIcon-root': {
     fill: '#fff',
   },
-  '& .MuiTypography-root-MuiLink-root':{
+  '& .MuiTypography-root-MuiLink-root': {
     color: '#fff',
   }
 }));
@@ -64,13 +64,9 @@ const LogoImage = styled(Logo)(({ theme=myTheme }) => ({
   display: 'inline',
   outline: 'none', 
   border: 'none',
-  transform: "scale(1.6)",
-  overflow: "hidden",
-  [theme.breakpoints.down('sm')]: {
-    position: 'relative',
-    right: "-55%"
-  }
-}));
+  transform: 'scale(1.6)',
+  overflow: 'hidden',
+  }));
 
 
 export default function Navigation() {
@@ -91,7 +87,7 @@ const [openMenu, setOpenMenu] = React.useState(false)
           >
             <MenuIcon sx={{ display: { lg: 'none', sm: 'block' }, zIndex: myTheme.zIndex.tooltip }} />      
           </IconButton>
-          <LogoImage />
+          <LogoImage  sx={{ position: {xs: 'relative'}, right: {xs: '-55%', lg: '0%'}}} />
             <SocialIconWrapper sx={{ display: { sm: 'none', xs: 'none', lg: 'block' } }}>
               <Link  underline="none" href="https://www.linkedin.com/in/liudmyla-malomuzh-4a8b36175/" ><LinkedInIcon className="glow-icon" /></Link>
              <Link underline="none" href="https://github.com/milafreckled"><GitHubIcon className="glow-icon" /></Link>
@@ -101,8 +97,7 @@ const [openMenu, setOpenMenu] = React.useState(false)
         </Toolbar>
       </AppBar>
     </Box>
-    {
-              openMenu && <SocialIconWrapper sx={{  display: { lg: 'none', sm: 'block' }, zIndex: myTheme.zIndex.drawer}}>
+    {openMenu && <SocialIconWrapper sx={{  display: { lg: 'none', sm: 'block' }, zIndex: myTheme.zIndex.drawer}}>
              <Link  underline="none" href="https://www.linkedin.com/in/liudmyla-malomuzh-4a8b36175/" >
                <LinkedInIcon sx={{  width: "100%" }}/>
                </Link>

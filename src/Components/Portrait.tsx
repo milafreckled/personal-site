@@ -7,22 +7,21 @@ import Tooltip from '@mui/material/Tooltip'
 import BookIcon from '@mui/icons-material/Book';
 import Typography from '@mui/material/Typography';
 import myTheme from '../Theme/MyTheme'
-// const Ellipse = require("../images/ellipse.svg") as string
 import BlobBig from "../images/blob-big.svg"
 import portrait from "../images/myself.jpeg"
 import "../App.scss"
 
 const HintContainer = styled('div')(({ theme = myTheme }) => ({
-  display: "flex",
+  display: 'flex',
   width: '20%',
   flexDirection: 'column',
   gap: '55px',
   position: 'absolute',
   left: '48%',
   top: '19%',
-  overflow: 'hidden',
+ 
   "& a:nth-of-type(2n)": {
-    marginLeft: "40px",
+    marginLeft: '40px',
   }
 }));
 
@@ -107,6 +106,7 @@ const TextBox = styled(Box)(({ theme=myTheme }) => ({
     },
   }
 }));
+
 const Image = styled('img')(({ theme=myTheme }) => ({
   boxShadow: `0px 0px 10px ${theme.palette.secondary.main}`,
   animation: '1s blink infinite',
@@ -124,7 +124,8 @@ const Image = styled('img')(({ theme=myTheme }) => ({
     height: '60vw',
     transform: 'translateX(30%)',
   }
-  }));
+}));
+
   const MyContainer = styled('div')(({theme = myTheme}) => ({
     background: `url(${BlobBig}) no-repeat`,
     backgroundSize: '1800px 800px',
@@ -147,22 +148,32 @@ const Portrait = () => {
        <Typography sx={{ 
   marginTop: {lg: '2%', sm: '0'}, color: {lg: '#fff', sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main},  maxWidth: {lg: '20vw'} }} variant="h4"  component="h4">Things to know about me:</Typography>
        <br />
-       <Typography sx={{ lineHeight: '1.5', color: {lg: "#fff", sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main }}} variant="h6">
-         <ul>
+       <Typography sx={{ lineHeight: '1.5',overflow: 'hidden', color: {lg: "#fff", sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main }}} variant="h6">
+        <ul>
         <li><span id="emoji-rocket">🚀</span>I am turbulent and always learn fast.</li>
         <li><span style={{ color: myTheme.palette.text.secondary }} id="emoji-curious">🧐</span>I am curious about CS and not only.</li>
         <li><span style={{ color: myTheme.palette.text.secondary }} id="emoji-teamplayer">🙋🏼‍♀️</span>I am a teamplayer.<br />You are always welcome!</li>
-      </ul>
+        </ul>
       </Typography>
       <HintContainer>
       <Tooltip sx={{maxHeight: '12px'}} title="Download CV">
-      <a href="https://docs.google.com/document/d/e/2PACX-1vSGQQxD1LFJJEnAVE5ppSy2-4LjgpvQU0KptgPANJwQAmfcxoYhAmQKAZf8g7-mv-QXFRQfOFGDFmpS/pub" download> <Hint  sx={{zIndex: myTheme.zIndex.mobileStepper}}>
+      <a href="https://docs.google.com/document/d/e/2PACX-1vSGQQxD1LFJJEnAVE5ppSy2-4LjgpvQU0KptgPANJwQAmfcxoYhAmQKAZf8g7-mv-QXFRQfOFGDFmpS/pub" download> 
+      <Hint  sx={{zIndex: myTheme.zIndex.mobileStepper}}>
       <DownloadIcon /></Hint></a></Tooltip>
-      <Tooltip title="Email me"><a href="mailto:miladul2014@gmail.com"><Hint>
-      <EmailIcon />
-      </Hint></a></Tooltip>
-      <Tooltip title="Visit Blog"><Hint><BookIcon /></Hint></Tooltip>
-</HintContainer>
+      <Tooltip sx={{maxHeight: '12px'}} title="Email me">
+        <a href="mailto:miladul2014@gmail.com">
+          <Hint sx={{zIndex: myTheme.zIndex.mobileStepper}} >
+          <EmailIcon />
+          </Hint>
+      </a>
+      </Tooltip>
+      <Tooltip title="Visit Blog">
+        <a href="https://www.freckledblog.studio/">
+        <Hint><BookIcon /></Hint>
+        </a>
+        </Tooltip>
+    
+  </HintContainer>
 </TextBox>
 </ImageBox>
 </MyContainer>

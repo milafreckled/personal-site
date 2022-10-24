@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material/styles'
 
 declare module '@mui/material/styles' {
 interface Theme {
@@ -45,7 +45,8 @@ const myTheme = createTheme({
     caption: {
       fontFamily: 'Droid Sans',
     },
-  }
+  },
+  spacing: 2
 });
 
 export default myTheme;

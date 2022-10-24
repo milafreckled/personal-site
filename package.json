@@ -8,17 +8,17 @@
     "@mailchimp/mailchimp_marketing": "^3.0.66",
     "@material-ui/core": "^5.0.0-beta.5",
     "@mui/icons-material": "^5.0.0",
-    "@mui/material": "^5.0.0",
-    "@mui/styles": "^5.0.0",
+    "@mui/material": "^5.0.0-beta.5",
+    "@mui/styled-engine": "^5.0.0",
+    "@reach/popover": "^0.17.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.25",
-    "@types/react": "^17.0.24",
+    "@types/react": "^17.0.50",
     "@types/react-dom": "^17.0.9",
     "axios": "^0.22.0",
     "body-parser": "^1.19.0",
-    "concurrently": "^6.4.0",
     "cors": "^2.8.5",
     "debug": "^4.3.1",
     "express": "^4.17.1",
@@ -31,7 +31,7 @@
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.13",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.0.2",
+    "react-bootstrap": "^2.5.0",
     "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-intersection-observer": "^9.3.5",
@@ -41,7 +41,7 @@
     "reactjs-popup": "^2.0.5",
     "stripe": "^8.177.0",
     "styled-components": "^5.3.1",
-    "typescript": "^4.7.4",
+    "typescript": "^4.8.3",
     "uuid": "^7.0.3",
     "web-vitals": "^1.1.2"
   },
@@ -51,7 +51,9 @@
     "dev": "concurrently  \"npm run server\"  \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "functions": "npm run lint && tsc",
+    "deploy": "npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": [
@@ -73,6 +75,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.0",
+    "@types/react-bootstrap": "^0.32.30",
     "@types/react-router-dom": "^5.3.0",
     "@types/react-test-renderer": "^17.0.1",
     "react-test-renderer": "^17.0.2"
