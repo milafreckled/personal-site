@@ -3,25 +3,7 @@ const functions = require("firebase-functions");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 const listId = "ce7f163d14";
 const stripe = require("stripe")(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-// const express = require("express");
-// const app = express();
 
-// IN CLIENT(example):
-// document.addEventListener('DOMContentLoaded', function() {
-
-//   let app = firebase.app();
-
-//   const sendText = firebase.functions().httpsCallable('sendText');
-
-//   sendText({ message: 'Hello World!' })
-// });
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
 function subscribeMailchimp(user) {
   mailchimp.setConfig({
     apiKey: "a9343263630dc7619ffc02756ccc71f5-us7",

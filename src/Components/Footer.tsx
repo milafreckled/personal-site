@@ -1,27 +1,26 @@
 import { styled } from '@mui/material/styles'
 import CheckoutForm from "../Checkout/CheckoutForm"
-import { Form, Button } from "react-bootstrap"
+
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import myTheme from "../Theme/MyTheme";
 import 'reactjs-popup/dist/index.css';
-import { DialogContentText, DialogTitle } from '@material-ui/core';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import React, {  useState, useEffect, memo } from "react";
+import React, {  useState, useEffect, memo, SetStateAction } from "react";
 import axios from "axios";
 import { Typography } from '@mui/material';
-import { Dialog} from '@material-ui/core';
-
+import ReactDOM from 'react-dom';
 
 
 export default function Footer(){
 
-  const StyledModal = styled(Dialog)(({theme=myTheme}) => ({
+  const TrapDiv = styled('div')(({theme=myTheme}) => ({
+      position: "absolute",
+      top: "20%",
+      maxWidth: "500px",
       borderRadius: "20px",
       padding: theme.spacing(2),
       fontSize: '12px',
-      width: '500px',
-      height: '400px',
+      width: '100%',
+      height: 'auto',
       backgroundColor: '#fff',
       margin: '0 auto',
       zIndex: myTheme.zIndex.modal,
@@ -40,14 +39,14 @@ export default function Footer(){
     border: 'none',
   });
 
-    const Footer = styled('footer')({
+  const Footer = styled('footer')({
       textAlign: 'center',
       padding: 0,
       margin: 0,
       width: '100vw',
   });
 
-    const SubBtn = styled('button')(({ theme=myTheme }) => ({
+  const SubBtn = styled('button')(({ theme=myTheme }) => ({
     display: 'block', 
     color: theme.palette.primary.main,
     background: '#fff',
@@ -61,7 +60,7 @@ export default function Footer(){
           }
         } ));
 
-    const Content = styled('div')(({ theme=myTheme }) => ({ 
+  const Content = styled('div')(({ theme=myTheme }) => ({ 
       background: theme.palette.primary.main,
       paddingBlock: '2rem',
       textAlign: 'center',
@@ -72,9 +71,9 @@ export default function Footer(){
     const [email, setEmail] = useState('');
     const [showPopup, setShowPopup] = useState(false);
 
-    useEffect(() => {console.log('Show popup?', showPopup)}, [showPopup]);
+  useEffect(() => {console.log('Show popup?', showPopup)}, [showPopup]);
 
-    function onSubmit(event: React.MouseEvent<HTMLButtonElement>){
+  function onSubmit(event: React.MouseEvent<HTMLButtonElement>){
       event.preventDefault();
       setShowPopup(false);
       axios.post('https://us-central1-ludas-website.cloudfunctions.net/subscribe', 
@@ -88,56 +87,55 @@ export default function Footer(){
       }, (error: Error) => {
           console.log(error);
       });  
-    }
+  };
 
 
-const ref = React.useRef(null);
+const modalRef = React.useRef(null);
+const buttonRef = React.useRef(null);
 
-const Popup = memo(() =>
-  <StyledModal 
-  aria-labelledby="alert-dialog-slide-title"
-  aria-describedby="alert-dialog-slide-description"
-  keepMounted 
-  open={showPopup} 
-    onClose={() => console.log("closed")}
-    fullWidth>
-         <CloseBtn onClick={() => setShowPopup(false)}> &times;</CloseBtn>
-         <DialogContent>
-<Form>
+interface ModalProps {
+  setFirstName?: React.Dispatch<SetStateAction<string>>;
+  setLastName?: React.Dispatch<SetStateAction<string>>;
+  setEmail?: React.Dispatch<SetStateAction<string>>;
+  modalRef: React.RefObject<HTMLDivElement>;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+  closeModal: () => void;
+  onSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+};
 
-<Form.Group className="mb-3" controlId="formBasicPassword">
-  <Form.Label>First name</Form.Label>
-  <Form.Control type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)}/>
-</Form.Group>
-<Form.Group className="mb-3" controlId="formBasicPassword">
-  <Form.Label>Last name</Form.Label>
-  <Form.Control type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)}/>
-</Form.Group>
-<Form.Group className="mb-3" controlId="formBasicEmail">
-  <Form.Label>Email address</Form.Label>
-  <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
-  <Form.Text className="text-muted">
-    We'll never share your email with anyone else.
-  </Form.Text>
-</Form.Group>
-<Form.Group className="mb-3" controlId="formBasicCheckbox">
-  <Form.Check type="checkbox" label="Check me out" />
-</Form.Group>
-<DialogActions>
-<Button variant="primary" type="submit" onClick={onSubmit}>
-  Submit
-</Button>
-</DialogActions>
-</Form>
-</DialogContent>
-</StyledModal>
-);
+// const Modal = ({
+//   modalRef,
+//   buttonRef,
+//   closeModal,
+//   onSubmit
+// }: ModalProps) => {
+//   return (
+//     <FocusTrap>
+//         <TrapDiv ref={modalRef}>
+//           <button
+//             ref={buttonRef}
+//             aria-label="Close Modal"
+//             aria-labelledby="close-modal"
+//             className="_modal-close"
+//             onClick={closeModal}
+//           >
+//             <span id="close-modal" className="_hide-visual">
+//               Close
+//             </span>
+//             <svg className="_modal-close-icon" viewBox="0 0 40 40">
+//               <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
+//             </svg>
+//           </button>
+//           <div className="modal-body">
+//             <Form onSubmit={onSubmit} setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} />
+//           </div>
+//         </TrapDiv>
+//     </FocusTrap>);
+// };
 
 return(
   <Router>
    <Footer>
-        {/* <Button style={{ color: myTheme.palette.primary.main}} component="a" href="mailto:miladul2014@gmail.com">Email me</Button> */}
-        {/* <Button style={{display: 'block', color: myTheme.palette.primary.main}}><Link style={{display: 'block', color: myTheme.palette.primary.main}} to="/checkout">Buy me a coffee</Link></Button> */}   
         <Switch>
           <Route path="/checkout">
             <CheckoutForm />
@@ -146,7 +144,7 @@ return(
             </Route>
         </Switch>
         <Content>   
-     <Popup />
+     {/* { showPopup && <Modal closeModal={() => setShowPopup(false)} onSubmit={onSubmit} buttonRef={buttonRef} modalRef={modalRef} /> } */}
       <SubBtn onClick={() => setShowPopup(!showPopup)}>
             Subscribe to a newsletter
         </SubBtn>
