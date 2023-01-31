@@ -45,14 +45,14 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "server": "nodemon server.js",
     "dev": "concurrently  \"npm run server\"  \"npm start\"",
-    "build": "react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "functions": "npm run lint && tsc",
-    "deploy": "npm run build && firebase deploy"
+    "deploy": "npm run  build && firebase deploy"
   },
   "eslintConfig": {
     "extends": [

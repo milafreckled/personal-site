@@ -18,9 +18,9 @@ const ProjectLink = styled('a')(({theme = myTheme}) => ({
     transformStyle: 'preserve-3d',
     display: 'block',
     minWidth: '45vw',
-    '& :hover':{
+    '&:hover':{
       boxShadow: `2px 2px 10px ${myTheme.palette.text.disabled}`,
-      transform: 'translateZ(2rem)',
+      transform: 'translateZ(10%)',
       letterSpacing: '2.5',
     },
     [myTheme.breakpoints.down('sm')]:{
@@ -38,6 +38,5 @@ interface ProjectItemProps {
 export default function ProjectItem(props: ProjectItemProps){
     return(
       <ProjectLink href={props.url}>{props.text}</ProjectLink>
-
     )
 }
