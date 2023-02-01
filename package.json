@@ -48,7 +48,7 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "server": "nodemon server.js",
     "dev": "concurrently  \"npm run server\"  \"npm start\"",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "functions": "npm run lint && tsc",
