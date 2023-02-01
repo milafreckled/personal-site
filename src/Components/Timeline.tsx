@@ -6,9 +6,7 @@ import { isMobile } from 'react-device-detect';
 import { styled, alpha } from '@mui/material/styles';
 import { TableContainer, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import myTheme from "../Theme/MyTheme"
-//const useStyles = makeStyles({
 
-//})
 function createData(
     date: string,
     event: string,
