@@ -139,13 +139,13 @@ const Portrait = () => {
     return(
       <MyContainer>
         <ImageBox >
-<Image alt="me" src={portrait} />
-<TextBox >
-<Typography variant="h2"  sx={{ textAlign: 'left', color: {lg: 'white', sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main}, animation: "fadeUp  1s ease-in-out forwards" }} component="h2"> I'm Ludmila</Typography>
-       <Typography variant="h6"  sx={{  textAlign: 'left', color: myTheme.palette.text.disabled, animation: "appear  2s ease-in-out forwards"   }} component="h6">
+        <Image alt="me" src={portrait} />
+        <TextBox >
+        <Typography variant="h2"  sx={{ textAlign: 'left', color: {lg: 'white', sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main}, animation: "fadeUp  1s ease-in-out forwards" }} component="h2"> I'm Ludmila</Typography>
+        <Typography variant="h6"  sx={{  textAlign: 'left', color: myTheme.palette.text.disabled, animation: "appear  2s ease-in-out forwards"   }} component="h6">
          a programmer.
-       </Typography>
-       <Typography sx={{ 
+        </Typography>
+        <Typography sx={{ 
   marginTop: {lg: '2%', sm: '0'}, color: {lg: '#fff', sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main},  maxWidth: {lg: '20vw'} }} variant="h4"  component="h4">Things to know about me:</Typography>
        <br />
        <Typography sx={{ lineHeight: '1.5',overflow: 'hidden', color: {lg: "#fff", sm: myTheme.palette.primary.main, xs: myTheme.palette.primary.main }}} variant="h6">
@@ -171,13 +171,12 @@ const Portrait = () => {
         <a href="https://www.freckledblog.studio/">
         <Hint><BookIcon /></Hint>
         </a>
-        </Tooltip>
-    
+      </Tooltip>   
   </HintContainer>
 </TextBox>
 </ImageBox>
 </MyContainer>
-    )
+  )
 }
 export default Portrait;
 // https://docs.google.com/document/d/e/2PACX-1vSGQQxD1LFJJEnAVE5ppSy2-4LjgpvQU0KptgPANJwQAmfcxoYhAmQKAZf8g7-mv-QXFRQfOFGDFmpS/pub

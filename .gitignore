@@ -10,7 +10,7 @@
 
 # production
 /build
-
+/src/*.workspace
 # misc
 .DS_Store
 .env.local

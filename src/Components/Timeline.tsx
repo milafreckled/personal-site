@@ -57,14 +57,14 @@ const MyTable = styled(Table)(({theme=myTheme}) => ({
     '& .MuiTableCell-root': {
         paddingLeft: "7%",
         paddingRight: "7%",
-        '&:nth-child(2n+1)': {
+        '&:nth-of-type(2n+1)': {
           fontWeight: '800',
         }
     },
     [theme.breakpoints.down('sm')]:{
       margin: '0',
       width: '100vw',
-      '& th:nth-child(2n+1)':{
+      '& th:nth-of-type(2n+1)':{
         borderBottom: `2px solid ${alpha(theme.palette.primary.main, 0.6)}`, 
       }
     }
@@ -81,7 +81,7 @@ const Description = styled(TableCell)(({theme=myTheme})=> ({
     width: "35%",
     },
     [theme.breakpoints.down('sm')]:{
-      "&:nth-child(2n+1)":{
+      "&:nth-of-type(2n+1)":{
         border: 'none',
         height: 'auto',
         backgroundColor: theme.palette.primary.main,

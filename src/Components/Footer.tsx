@@ -1,13 +1,12 @@
 import { styled } from '@mui/material/styles'
-import CheckoutForm from "../Checkout/CheckoutForm"
-
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import myTheme from "../Theme/MyTheme";
 import 'reactjs-popup/dist/index.css';
-import React, {  useState, useEffect, memo, SetStateAction, FormEvent } from "react";
+import React, {  useState, useEffect, SetStateAction, FormEvent } from "react";
 import axios from "axios";
 import { Typography } from '@mui/material';
-import FocusTrap from '@mui/material/Unstable_TrapFocus';
+import Modal from './Modal'
+import { initializeApp } from "firebase/app";
+import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions"
 
 
 export default function Footer(){
@@ -16,8 +15,8 @@ export default function Footer(){
   const [email, setEmail] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const TrapDiv = styled('div')(({theme=myTheme}) => ({
-      position: "absolute",
-      top: "20%",
+      position: "fixed",
+      top: "10%",
       left: "50%",
       transform: "translateX(-50%)",
       maxWidth: "500px",
@@ -44,6 +43,9 @@ export default function Footer(){
     fontSize: '24px',
     background: '#ffffff',
     border: 'none',
+    '& > ._hide-visual':{
+      visibility: 'hidden'
+    }
   });
 
   const Footer = styled('footer')({
@@ -57,13 +59,14 @@ export default function Footer(){
     display: 'block', 
     color: theme.palette.primary.main,
     background: '#fff',
-    margin: '0 auto',
+    margin: '5px auto',
     border: `2px solid ${ theme.palette.primary.main}`,
     cursor: 'pointer',
+    fontSize: '1.4rem',
     '&:hover': {
-    color: '#fff',
-    background: theme.palette.primary.main,
-    border: '2px solid #fff',
+      color: '#fff',
+      background: theme.palette.primary.main,
+      border: '2px solid #fff',
     }
     }));
 
@@ -71,32 +74,13 @@ export default function Footer(){
       background: theme.palette.primary.main,
       paddingBlock: '2rem',
       textAlign: 'center',
-    }));
+  }));
 
 const Form = styled('form')(({theme=myTheme}) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center'
 }));
-
-  useEffect(() => {
-    console.log('Show popup?', showPopup)}, [showPopup]);
-
-  function onSubmit(event: FormEvent<HTMLFormElement>){
-      event.preventDefault();
-      setShowPopup(false);
-      axios.post('https://us-central1-ludas-website.cloudfunctions.net/subscribe', 
-      {
-      email,
-      firstName,
-      lastName
-      })
-      .then((response: any) => {
-          console.log(response);
-      }, (error: Error) => {
-          console.log(error);
-      });  
-  };
 
 
 const modalRef = React.useRef(null);
@@ -115,70 +99,62 @@ interface ModalFormProps {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void
 }
 
-const ModalForm = ({
-  setFirstName,
-  setLastName,
-  setEmail,
-  onSubmit
-}: ModalFormProps) => {
-return(
-  <Form onSubmit={(e) => onSubmit(e)}>
-    <label>First name:</label>
-    <input type="text" required onChange={(e) => setFirstName(e.target.value)} />
-    <label>Last name:</label>
-    <input type="text" onChange={(e) => setLastName(e.target.value)} />
-    <label>Email:</label>
-    <input type="text" required onChange={(e) => setEmail(e.target.value)} />
-    <SubBtn type='submit'>Submit</SubBtn>
-    </Form>
-)
-}
 
-const Modal = ({
-  modalRef,
-  buttonRef,
-  closeModal
-}: ModalProps) => {
-  return (
-        <TrapDiv ref={modalRef}>
-          <CloseBtn
-            ref={buttonRef}
-            aria-label="Close Modal"
-            aria-labelledby="close-modal"
-            onClick={closeModal}
-          >
-            <span id="close-modal" className="_hide-visual">
-              Close
-            </span>
-            <svg className="_modal-close-icon" viewBox="0 0 40 40">
-              <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
-            </svg>
-          </CloseBtn>
-          <div className="modal-body">
-            <ModalForm onSubmit={(e: FormEvent<HTMLFormElement>) => onSubmit(e)} setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} />
-          </div>
-        </TrapDiv>
-    )};
+// const ModalForm = ({
+//   setFirstName,
+//   setLastName,
+//   setEmail,
+//   onSubmit
+// }: ModalFormProps) => {
+// return(
+//   <Form onSubmit={(e) => submitForm()}>
+//     <label>First name:</label>
+//     <input type="text" required onChange={(e) => setFirstName(e.target.value)} />
+//     <label>Last name:</label>
+//     <input type="text" onChange={(e) => setLastName(e.target.value)} />
+//     <label>Email:</label>
+//     <input type="text" required onChange={(e) => setEmail(e.target.value)} />
+//     <SubBtn type='submit'>Submit</SubBtn>
+//   </Form>
+// )
+// }
+
+// const Modal = ({
+//   modalRef,
+//   buttonRef,
+//   closeModal
+// }: ModalProps) => {
+//   return (
+//       <TrapDiv ref={modalRef}>
+//           <CloseBtn
+//             ref={buttonRef}
+//             aria-label="Close Modal"
+//             aria-labelledby="close-modal"
+//             onClick={closeModal}
+//           >
+//             <span id="close-modal" className="_hide-visual">
+//               Close
+//             </span>
+//             <svg className="_modal-close-icon" viewBox="0 0 40 40">
+//               <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
+//             </svg>
+//           </CloseBtn>
+//           <div className="modal-body">
+//             <ModalForm onSubmit={(e: FormEvent<HTMLFormElement>) => onSubmit(e)} setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} />
+//           </div>
+//       </TrapDiv>
+//     )};
 
 return(
-  <Router>
-   <Footer>
-        <Switch>
-          <Route path="/checkout">
-            <CheckoutForm />
-          </Route>
-            <Route path="/subscribe">
-            </Route>
-        </Switch>
-        <Content>   
-     {/* { showPopup && <Modal closeModal={() => setShowPopup(false)} buttonRef={buttonRef} modalRef={modalRef} />  } */}
+  <Footer>
+    <Content>   
       <SubBtn onClick={() => setShowPopup(!showPopup)}>
             Subscribe to a newsletter
-        </SubBtn>
+      </SubBtn>
+      {showPopup && <Modal modalRef={modalRef} buttonRef={buttonRef} closeModal={() => setShowPopup(false)}/>}
         <Typography variant="body1" color="#fff">All rights reserved, 2021 &copy;</Typography>
         <Typography variant="body1"color="#fff">made with ❤️, using React and Typescript</Typography>
-        </Content>
-    </Footer>
-  </Router>
+    </Content>
+  </Footer>
 )
 }

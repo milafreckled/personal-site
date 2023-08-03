@@ -35,7 +35,7 @@
     "react-dom": "^17.0.2",
     "react-intersection-observer": "^9.3.5",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "react-stripe-checkout": "^2.6.3",
     "reactjs-popup": "^2.0.5",
     "stripe": "^8.177.0",
@@ -52,7 +52,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "functions": "npm run lint && tsc",
-    "deploy": "npm run  build && firebase deploy"
+    "deploy": "npm run build && firebase deploy --except functions"
   },
   "eslintConfig": {
     "extends": [
@@ -76,6 +76,7 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@types/react-router-dom": "^5.3.0",
     "@types/react-test-renderer": "^17.0.1",
+    "focus-trap-react": "^10.0.2",
     "react-test-renderer": "^17.0.2"
   }
 }

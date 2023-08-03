@@ -6,34 +6,42 @@ import Divider from '@mui/material/Divider'
 import { isMobile } from 'react-device-detect';
 import myTheme from "../Theme/MyTheme"
 import "../App.scss"
-import weatherApiImg from "../images/weather-api.jpeg"
+import interactiveCardImg from "../images/interactive-card.png"
 import calculatorImg from "../images/profit-calculator.png"
 import nutritionImg from "../images/nutrition-app.png"
 
 
-//https://bjw6l.csb.app/ = calculator app
+//https://bjw6l.csb.app/ - calculator app
 //https://nutrition-app-milafreckled.herokuapp.com/ - nutrition app
 //https://dreamy-volhard-522fd9.netlify.app/ - profit calculator
+//https://interactive-card-rouge.vercel.app/ - interactive card
+const ProjectWrapper = styled('div')(({theme=myTheme}) => ({
+  backgroundColor: '#fff', 
+  paddingBlock: '40px',
+  overflowY: 'hidden',
+  visibility: 'hidden',
+  opacity: '0',
+  willChange: 'opacity, visibility',
+  transition: 'all 0.2s ease-out',
+  '&.is-visible':{
+    opacity: 1,
+    transform: 'none',
+    visibility: 'visible'
+  },
+}))
+
 const ProjectsContainer = styled('div')(({ theme=myTheme }) => ({
     ...theme.typography.body2,
     overflowY: 'hidden',
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: '1.5vw',
-    opacity: 0,
     transform: 'translateY(20vh)',
-    visibility: 'hidden',
     transition: 'opacity 0.2s ease-out , transform 0.6s ease-out',
     willChange: 'opacity, visibility',
     [theme.breakpoints.down('sm')]:{
       display: 'block',
       marginInline: '2.5vw',
-    },
-    '&.is-visible':{
-      opacity: 1,
-      transform: 'none',
-      visibility: 'visible',
-      display: 'flex'
     },
     '& a':{
       color: 'white',
@@ -85,16 +93,15 @@ const ProjectDesc = styled('article')(({ theme }) => ({
 export default function Projects(){
   const { ref, inView } = useInView({
     threshold: 0,
-    trackVisibility: true,
-    delay: 100
+    rootMargin: '0px'
   });
 
     if (!isMobile){ 
       return(
-      <div style={{ backgroundColor: '#fff', paddingBlock: '40px', overflowY: 'hidden'}}>
+      <ProjectWrapper className={inView ? 'is-visible' : ''}>
     <Typography sx={{ typography:  'h2', textAlign: "center", color: myTheme.palette.primary.main }} >My Projects</Typography>
-        <ProjectsContainer ref={ref} className={inView ? 'is-visible' : ''}>  
-        <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={weatherApiImg} alt="" /></a>
+        <ProjectsContainer ref={ref}>  
+        <a href="https://interactive-card-rouge.vercel.app/"> <ProjectImage src={interactiveCardImg} alt="" /></a>
           <ProjectDesc>
           <h2>WEATHER API</h2>
           <Divider />
@@ -105,7 +112,7 @@ export default function Projects(){
           </p>
           </ProjectDesc>
         </ProjectsContainer>
-        <ProjectsContainer  className={inView ? 'is-visible' : ''}>     
+        <ProjectsContainer>     
           <ProjectDesc>
           <h2>PROFIT CALCULATOR</h2>  
           <Divider />
@@ -118,7 +125,7 @@ export default function Projects(){
           </ProjectDesc>
           <a href="https://dreamy-volhard-522fd9.netlify.app/"> <ProjectImage src={calculatorImg} alt="" /></a>
           </ProjectsContainer>
-          <ProjectsContainer  className={inView ? 'is-visible' : ''}>
+          <ProjectsContainer>
           <a href="https://hackers-stories.web.app/"> <ProjectImage src={nutritionImg} alt="" /></a>
           <ProjectDesc>
             <h2>NUTRITION APP</h2>  
@@ -130,21 +137,20 @@ export default function Projects(){
           </p>
           </ProjectDesc>
           </ProjectsContainer>
-          </div>
-          )
+          </ProjectWrapper>
+        )
     }else{
 return(
-<div style={{ backgroundColor: '#fff', paddingBlock: '40px'}}>
+  <ProjectWrapper className={inView ? 'is-visible' : ''}>
     <Typography sx={{ typography:  'h2', textAlign: "center", color:'#fff' }} >My Projects</Typography>
-        <ProjectsContainer ref={ref} className={inView ? 'is-visible' : ''}>  
-        <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={weatherApiImg} alt="" /></a>
+        <ProjectsContainer ref={ref} >  
+        <a href="https://thawing-beach-25991.herokuapp.com/" > <ProjectImage src={interactiveCardImg} alt="" /></a>
           <ProjectDesc>
-          <h2>WEATHER API</h2>
+          <h2>INTERACTIVE CARD</h2>
           <Divider />
           <p>
-         Weather API using current weather data from https://openweathermap.org/api.<br />
-            Search for a current temperature in any place, and add records to the weather archive.<br />
-            Technologies included: Express, EJS, MongoDB. Hosted with heroku.
+            Interactive card component with form validation.<br />
+            Build with React and hosted with Vercel.
           </p>
           </ProjectDesc>
         </ProjectsContainer>
@@ -175,7 +181,7 @@ return(
           </p>
           </ProjectDesc>
           </ProjectsContainer>
-          </div>
+          </ProjectWrapper>
 )
     }
   

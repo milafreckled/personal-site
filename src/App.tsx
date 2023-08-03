@@ -7,16 +7,27 @@ import { ThemeProvider } from '@mui/material/styles';
 import  Projects  from "./Components/Projects"
 import Timeline from "./Components/Timeline"
 import Footer from "./Components/Footer"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CheckoutForm from './Checkout/CheckoutForm';
 
 function App() {
   return (
- <ThemeProvider theme={myTheme}>
-     <Navigation></Navigation>
-    <Portrait />
-   <Projects></Projects>
-   <Timeline></Timeline>
-   <Footer></Footer>
-    </ThemeProvider>
+  <ThemeProvider theme={myTheme}>
+    <Router>
+          <Switch>
+            <Route path="/checkout">
+              <CheckoutForm />
+            </Route>
+              <Route path="/subscribe">
+              </Route>
+          </Switch>
+      <Navigation />
+      <Portrait />
+      <Projects />
+      <Timeline />
+      <Footer />
+      </Router>
+  </ThemeProvider>
   );
 }
 
